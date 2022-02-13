@@ -41,19 +41,19 @@ svg {
 }
 
 .sliders {
-  pointer-events: none;
+  /* pointer-events: none; */
   display: flex;
   flex-direction: column;
   position: absolute;
   bottom: 0%;
   background: white;
-  opacity: 0;
+  /* opacity: 0; */
   padding: 1rem;
   width: 80%;
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
   /*We are adding an adjutment class*/
-  transform: translateY(100px);
+  /* transform: translateY(100px); */
   transition: all 0.5 ease-in-out;
 }
 .sliders.active {
@@ -114,4 +114,14 @@ svg {
   background: none;
   cursor: pointer;
   margin: 2rem 0rem;
+}
+
+/* Slider stuff */
+input[type="range"] {
+  -webkit-appearance: none;
+  margin: 1rem 0rem;
+  width: 100%;
+  position: relative;
+  border-radius: 1rem;
+  cursor: pointer;
 }
