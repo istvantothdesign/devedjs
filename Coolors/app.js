@@ -1,15 +1,18 @@
 ///Global selections and variables
 const colorDivs = document.querySelectorAll(".color");
-const generateBtn = document.querySelectorAll(".generate");
+const generateBtn = document.querySelector(".generate");
 const sliders = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll(".color h2");
 const popup = document.querySelector(".copy-container");
 const adjustButton = document.querySelectorAll(".adjust");
 const closeAdjustments = document.querySelectorAll(".close-adjustment");
 const sliderContainers = document.querySelectorAll(".sliders");
+const lockButton = document.querySelectorAll(".lock");
 let initialColors;
 
 // Event listeners
+generateBtn.addEventListener("click", randomColors);
+
 sliders.forEach((slider) => {
   document.addEventListener("input", hslControls);
 });
@@ -42,6 +45,11 @@ closeAdjustments.forEach((button, index) => {
     closeAdjustmentPanel(index);
   });
 });
+lockButton.forEach((button, index) => {
+  button.addEventListener("click", (e) => {
+    lockLayer(e, index);
+  });
+});
 
 //Functions
 
@@ -69,7 +77,12 @@ function randomColors() {
     const randomColor = generateHex();
 
     // Add it to the array
-    initialColors.push(chroma(randomColor).hex());
+    if (div.classList.contains("locked")) {
+      initialColors.push(hexText.innerHTML);
+      return;
+    } else {
+      initialColors.push(chroma(randomColor).hex());
+    }
 
     //Add the colour to the backgground
     div.style.backgroundColor = randomColor;
@@ -87,6 +100,11 @@ function randomColors() {
   });
   // Reset inputs
   resetInputs();
+  // Check for button contrast
+  adjustButton.forEach((button, index) => {
+    checkTextContrast(initialColors[index], button);
+    checkTextContrast(initialColors[index], lockButton[index]);
+  });
 }
 
 console.log(initialColors);
@@ -198,4 +216,15 @@ function closeAdjustmentPanel(index) {
   sliderContainers[index].classList.remove("active");
 }
 
+function lockLayer(e, index) {
+  const lockSVG = e.target.children[0];
+  const activeBg = colorDivs[index];
+  activeBg.classList.toggle("locked");
+
+  if (lockSVG.classList.contains("fa-lock-open")) {
+    e.target.innerHTML = '<i class="fas fa-lock"></i>';
+  } else {
+    e.target.innerHTML = '<i class="fas fa-lock-open"></i>';
+  }
+}
 randomColors();
