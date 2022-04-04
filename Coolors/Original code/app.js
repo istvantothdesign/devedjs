@@ -14,7 +14,7 @@ let savedPalettes = [];
 
 //Add our event listeners
 generateBtn.addEventListener("click", randomColors);
-sliders.forEach(slider => {
+sliders.forEach((slider) => {
   slider.addEventListener("input", hslControls);
 });
 colorDivs.forEach((div, index) => {
@@ -22,7 +22,7 @@ colorDivs.forEach((div, index) => {
     updateTextUI(index);
   });
 });
-currentHexes.forEach(hex => {
+currentHexes.forEach((hex) => {
   hex.addEventListener("click", () => {
     copyToClipboard(hex);
   });
@@ -43,7 +43,7 @@ closeAdjustments.forEach((button, index) => {
   });
 });
 lockButton.forEach((button, index) => {
-  button.addEventListener("click", e => {
+  button.addEventListener("click", (e) => {
     lockLayer(e, index);
   });
 });
@@ -158,7 +158,7 @@ function updateTextUI(index) {
 }
 function resetInputs() {
   const sliders = document.querySelectorAll(".sliders input");
-  sliders.forEach(slider => {
+  sliders.forEach((slider) => {
     if (slider.name === "hue") {
       const hueColor = initialColors[slider.getAttribute("data-hue")];
       const hueValue = chroma(hueColor).hsl()[0];
@@ -238,7 +238,7 @@ function savePalette(e) {
   popup.classList.remove("active");
   const name = saveInput.value;
   const colors = [];
-  currentHexes.forEach(hex => {
+  currentHexes.forEach((hex) => {
     colors.push(hex.innerText);
   });
   //Generate Object
@@ -271,7 +271,7 @@ function savePalette(e) {
   title.innerText = paletteObj.name;
   const preview = document.createElement("div");
   preview.classList.add("small-preview");
-  paletteObj.colors.forEach(smallColor => {
+  paletteObj.colors.forEach((smallColor) => {
     const smallDiv = document.createElement("div");
     smallDiv.style.backgroundColor = smallColor;
     preview.appendChild(smallDiv);
@@ -282,7 +282,7 @@ function savePalette(e) {
   paletteBtn.innerText = "Select";
 
   //Attach event to the btn
-  paletteBtn.addEventListener("click", e => {
+  paletteBtn.addEventListener("click", (e) => {
     closeLibrary();
     const paletteIndex = e.target.classList[1];
     initialColors = [];
@@ -333,7 +333,7 @@ function getLocal() {
     // *2
 
     savedPalettes = [...paletteObjects];
-    paletteObjects.forEach(paletteObj => {
+    paletteObjects.forEach((paletteObj) => {
       //Generate the palette for Library
       const palette = document.createElement("div");
       palette.classList.add("custom-palette");
@@ -341,7 +341,7 @@ function getLocal() {
       title.innerText = paletteObj.name;
       const preview = document.createElement("div");
       preview.classList.add("small-preview");
-      paletteObj.colors.forEach(smallColor => {
+      paletteObj.colors.forEach((smallColor) => {
         const smallDiv = document.createElement("div");
         smallDiv.style.backgroundColor = smallColor;
         preview.appendChild(smallDiv);
@@ -352,7 +352,7 @@ function getLocal() {
       paletteBtn.innerText = "Select";
 
       //Attach event to the btn
-      paletteBtn.addEventListener("click", e => {
+      paletteBtn.addEventListener("click", (e) => {
         closeLibrary();
         const paletteIndex = e.target.classList[1];
         initialColors = [];
