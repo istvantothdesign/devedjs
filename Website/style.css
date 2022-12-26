@@ -6,6 +6,7 @@
 body {
   font-family: "Inter";
   background: rgb(32, 32, 32);
+  overflow: hidden;
 }
 
 #logo {
@@ -58,6 +59,7 @@ body {
   position: relative;
   flex: 1;
   flex-basis: 25rem;
+  overflow: hidden;
 }
 .hero-img img {
   width: 100%;
@@ -132,7 +134,7 @@ body {
   padding: 2rem 0rem;
 }
 
-/* .reveal-img,
+.reveal-img,
 .reveal-text {
   position: absolute;
   width: 100%;
@@ -140,7 +142,7 @@ body {
   background: rgb(32, 32, 32);
   left: 0;
   top: 0;
-} */
+}
 
 cursor {
   width: 3rem;
@@ -148,4 +150,8 @@ cursor {
   border: 2px solid white;
   border-radius: 50%;
   position: absolute;
+}
+
+.active {
+  color: blue;
 }
